@@ -1,0 +1,14 @@
+{
+  "name": "gravity-affects-carryweight",
+  "version-string": "1.0.0",
+  "description": "",
+  "homepage": "",
+  "license": "MIT",
+  "dependencies": [
+    "boost-stl-interfaces",
+    "clib-util",
+    "rsm-binary-io",
+    "spdlog",
+    "xbyak"
+  ]
+}
