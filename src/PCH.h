@@ -3,8 +3,6 @@
 #include "RE/Starfield.h"
 #include "SFSE/SFSE.h"
 
-#include "RE/B/BGSEntryPoint.h"
-
 #include <ClibUtil/simpleINI.hpp>
 #include <ClibUtil/singleton.hpp>
 

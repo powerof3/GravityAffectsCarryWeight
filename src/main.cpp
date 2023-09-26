@@ -24,7 +24,7 @@ namespace Handler
 
 	struct AdjustItemWeight
 	{
-		static float Thunk(RE::Actor* a_this, std::uintptr_t a_inventoryStack, float a_itemWeight)
+		static float thunk(RE::Actor* a_this, std::uintptr_t a_inventoryStack, float a_itemWeight)
 		{
 			if (a_itemWeight > 0.0f) {
 				auto localGravity = a_this->GetGravityScale();
@@ -40,7 +40,7 @@ namespace Handler
 
 			return func(a_this, a_inventoryStack, a_itemWeight);
 		}
-		static inline REL::Relocation<decltype(Thunk)> func;
+		static inline REL::Relocation<decltype(thunk)> func;
 		static inline std::size_t                      idx = 0x99;
 	};
 
@@ -50,9 +50,9 @@ namespace Handler
 		settings->LoadSettings();
 
 		if (settings->adjustItemWeights) {
-			stl::write_vfunc<AdjustItemWeight>(RE::VTABLE::PlayerCharacter[25]);
+			stl::write_vfunc<AdjustItemWeight>(RE::VTABLE::PlayerCharacter[38]);
 		} else {
-			REL::Relocation<std::uintptr_t> target{ REL::Offset(0x024877CC) };
+			REL::Relocation<std::uintptr_t> target{ REL::ID(150799) };
 			stl::asm_replace<GetMaxCarryWeight>(target.address());
 		}
 	}
@@ -75,11 +75,11 @@ DLLEXPORT constinit auto SFSEPlugin_Version = []() noexcept {
 	data.PluginVersion(Version::MAJOR);
 	data.PluginName(Version::PROJECT);
 	data.AuthorName("powerofthree");
-	data.UsesSigScanning(true);
-	//data.UsesAddressLibrary(true);
-	data.HasNoStructUse(true);
-	//data.IsLayoutDependent(true);
-	data.CompatibleVersions({ SFSE::RUNTIME_SF_1_7_29 });
+	data.UsesAddressLibrary(true);
+	//data.UsesSigScanning(true);
+	data.IsLayoutDependent(true);
+	//data.HasNoStructUse(true);
+	data.CompatibleVersions({ SFSE::RUNTIME_LATEST });
 
 	return data;
 }();
